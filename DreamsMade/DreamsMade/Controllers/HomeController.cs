@@ -14,10 +14,18 @@ namespace DreamsMade.Controllers
             _logger = logger;
         }
 
+
         public IActionResult Index()
         {
             return View();
         }
+
+        //---------------------------------------------------------------------------------------------------------------------------
+        public IActionResult Dreams()
+        {
+            return View();
+        }
+
 
         //---------------------------------------------------------------------------------------------------------------------------
         public IActionResult MyPage(int id)

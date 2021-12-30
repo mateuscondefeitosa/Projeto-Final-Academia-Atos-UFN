@@ -17,27 +17,19 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Dreams">Dreams</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyPage">My Page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logot">Logot</a>
-                        </li>
-                    </ul>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <div class="navbar-nav flex-grow-1">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Dreams">Dreams</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyPage">My Page</a>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                       @* if(!currentUser) *@
+                           <a href="@Url.Action("Register", "Home")" class="nav-link text-dark">Register</a> 
+                           <a href="@Url.Action("Login", "Home")" class="nav-link text-dark">Login</a> 
+                       @* else *@
+                           <a href="@Url.Action("Logout", "Home")" class="nav-link text-dark">Logout</a> 
+                    </div>
                 </div>
             </div>
         </nav>
