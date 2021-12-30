@@ -15,8 +15,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Mateus\Desktop\Projeto-Final-Academia-Atos-UFN\DreamsMade\DreamsMade
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Mateus/Desktop/Projeto-Final-Academia-Atos-UFN/DreamsMade/DreamsMade/Views/Home/Dreams.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEcmVhbXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Mateus/Desktop/Projeto-Final-Academia-Atos-UFN/DreamsMade/DreamsMade/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mateus/Desktop/Projeto-Final-Academia-Atos-UFN/DreamsMade/DreamsMade/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mateus/Desktop/Projeto-Final-Academia-Atos-UFN/DreamsMade/DreamsMade/Views/Home/MyPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNeVBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mateus/Desktop/Projeto-Final-Academia-Atos-UFN/DreamsMade/DreamsMade/Views/Home/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Mateus/Desktop/Projeto-Final-Academia-Atos-UFN/DreamsMade/DreamsMade/Views/Shared/Error.cshtml]
