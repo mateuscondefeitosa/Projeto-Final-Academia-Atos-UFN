@@ -16,6 +16,7 @@ namespace DreamsMade.Models
 
         [Required]
         [StringLength(20)]
+        [DataType(DataType.Password)]
         public string password { get; set; }
 
 

@@ -60,3 +60,4 @@ C:\Users\Mateus\Desktop\Projeto-Final-Academia-Atos-UFN\DreamsMade\DreamsMade\ob
 C:\Users\Mateus\Desktop\Projeto-Final-Academia-Atos-UFN\DreamsMade\DreamsMade\obj\Debug\net6.0\ref\DreamsMade.dll
 C:\Users\Mateus\Desktop\Projeto-Final-Academia-Atos-UFN\DreamsMade\DreamsMade\obj\Debug\net6.0\DreamsMade.pdb
 C:\Users\Mateus\Desktop\Projeto-Final-Academia-Atos-UFN\DreamsMade\DreamsMade\obj\Debug\net6.0\DreamsMade.genruntimeconfig.cache
+C:\Users\Mateus\Desktop\Projeto-Final-Academia-Atos-UFN\DreamsMade\DreamsMade\obj\Debug\net6.0\scopedcss\Views\Home\Index.cshtml.rz.scp.css
