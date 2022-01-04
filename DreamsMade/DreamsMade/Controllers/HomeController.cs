@@ -7,12 +7,12 @@ namespace DreamsMade.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
 
         public IActionResult Index()
@@ -23,7 +23,11 @@ namespace DreamsMade.Controllers
         //---------------------------------------------------------------------------------------------------------------------------
         public IActionResult Dreams()
         {
-            return View();
+            Context context = new Context();
+
+            List<Post> posts = (from Post p in context.Posts select p).Include(e => e.user).ToList<Post>();
+
+            return View(posts);
         }
 
 
@@ -48,9 +52,13 @@ namespace DreamsMade.Controllers
             try
             {
                 Context context = new Context();
+                Encryption encrypter = new Encryption();
+
+                user.password = encrypter.encrypt(user.password);
 
                 context.Users.Add(user);
                 context.SaveChanges();
+
 
                 return RedirectToAction("MyPage", new {id = user.id});
             }
@@ -64,7 +72,21 @@ namespace DreamsMade.Controllers
 
         public IActionResult Login()
         {
-            return View();
+            try
+            {
+                //if (user != null)
+                //{
+                //    HttpContext.Session.SetInt32("Id", user.Id);
+                //    HttpContext.Session.SetString("Login", user.Login);
+                //    HttpContext.Session.SetString("Senha", user.Senha);
+                //    return RedirectToAction(nameof(MyPage));
+                //}
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -85,10 +107,10 @@ namespace DreamsMade.Controllers
         //---------------------------------------------------------------------------------------------------------------------------
         
         [HttpPost]
-        public IActionResult Logout(User user)
+        public IActionResult Logout()
         {
-            //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            return RedirectToAction("Index");
+            HttpContext.Session.Clear();
+            return View("Index");
         }
 
         //---------------------------------------------------------------------------------------------------------------------------

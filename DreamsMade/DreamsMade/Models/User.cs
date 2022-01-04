@@ -15,11 +15,10 @@ namespace DreamsMade.Models
 
 
         [Required]
-        [StringLength(20)]
         [DataType(DataType.Password)]
         public string password { get; set; }
 
 
-        public virtual ICollection<Image> images { get; set; }
+        public virtual ICollection<Post> posts { get; set; }
     }
 }

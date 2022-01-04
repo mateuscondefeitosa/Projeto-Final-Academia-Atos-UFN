@@ -8,7 +8,7 @@ namespace DreamsMade
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Image> Images { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         public Context()
         {
@@ -16,16 +16,16 @@ namespace DreamsMade
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=localhost; initial Catalog=CodeFirstEntity; User ID=sa; password=1234; language=Portuguese; Trusted_Connection=True");
+            optionsBuilder.UseSqlServer(@"Data Source=localhost; initial Catalog=DreamsMade; User ID=sa; password=1234; language=Portuguese; Trusted_Connection=True");
             optionsBuilder.UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Entity<Image>()
+                .Entity<Post>()
                 .HasOne(e => e.user)
-                .WithMany(e => e.images)
+                .WithMany(e => e.posts)
                 .OnDelete(DeleteBehavior.ClientCascade);
         }
 

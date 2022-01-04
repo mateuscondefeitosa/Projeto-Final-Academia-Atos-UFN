@@ -1,7 +1,8 @@
-﻿@*
+﻿@using DreamsMade.Models
+@model User
 
-*@
-@{
+@using (Html.BeginForm("Register", "Home", FormMethod.Post))
+{
     <div class="container d-flex justify-content-center align-items-center mt-5">
         <div class="row">
             <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
@@ -11,8 +12,8 @@
                         <h5 class="card-title text-center">Register</h5>
                         <form action="/register" class="validated-form" method="POST" novalidate>
                             <div class="mb-3">
-                                <label class="form-label" for="username">Username</label>
-                                <input class="form-control" type="text" name="username" id="username" autofocus required>
+                                <label class="form-label" for="name">Username</label>
+                                <input class="form-control" type="text" name="name" id="name" autofocus required>
                                 <div class="valid-feedback">
                                     Cheked!
                                 </div>
@@ -24,7 +25,7 @@
                                     Cheked!
                                 </div>
                             </div>
-                            <button class="btn btn-success btn-block">Register</button>
+                            <button class="btn btn-success btn-block" value="Register">Register</button>
                         </form>
                     </div>
                 </div>
