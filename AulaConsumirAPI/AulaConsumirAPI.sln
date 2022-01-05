@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AulaConsumirAPI", "AulaConsumirAPI\AulaConsumirAPI.csproj", "{3F519A7A-184A-41D1-98D7-29072D64B872}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F519A7A-184A-41D1-98D7-29072D64B872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F519A7A-184A-41D1-98D7-29072D64B872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F519A7A-184A-41D1-98D7-29072D64B872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F519A7A-184A-41D1-98D7-29072D64B872}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {515E981E-8B25-4827-8BF9-96339E3722AB}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,17 @@
+﻿#navlink {
+    padding: 0.25rem 0;
+    font-weight: 700;
+    color: rgba(91, 255, 228, 0.8);
+    margin-left: 1rem;
+    border-bottom: 0.15rem solid transparent;
+}
+
+    #navlink:hover {
+        border-bottom-color: rgba(91, 255, 228, 0.8);
+    }
+
+#navlink.active {
+        color: #00ffd5;
+        border-bottom-color: #00ffd5
+}
+

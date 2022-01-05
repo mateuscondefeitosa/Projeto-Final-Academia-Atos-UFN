@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<Contexto>(); // libera a injeção de dependencia
+builder.Services.AddDbContext<Contexto>(); // libera a injeção de dependencia <------------------------
 
 
 var app = builder.Build();

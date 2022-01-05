@@ -1,0 +1,15 @@
+﻿@model AulaConsumirAPI.Models.Pessoa
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using(Html.BeginForm("Excluir", "Home", FormMethod.Post))
+{
+    <p>ID:</p>
+    @Html.TextBoxFor(p => p.id)
+    <br />
+    <br />
+    <input type="submit" value="Excluir">
+}

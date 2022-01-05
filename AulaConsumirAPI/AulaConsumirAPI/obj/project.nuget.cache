@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "zHPL/qjXoRhR12zgCI/mGN2bJhxby8R7FdH5TuCOqUmUBEiRvsOROLyqa2eQVrC3YpK8Mtr3qOTM8lmWprUMMw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Mateus\\Desktop\\Projeto-Final-Academia-Atos-UFN\\AulaConsumirAPI\\AulaConsumirAPI\\AulaConsumirAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mateus\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

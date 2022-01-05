@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RV/fduC6+vN3AzBs+uTMLLSA1JxGA8UocrT7dqBrIQ0=",
+  "Hash": "jCX0j0vOX6jkEItjtBhBaHW5ARRK7lF/Z5F96RYUvWo=",
   "Source": "DreamsMade",
   "BasePath": "_content/DreamsMade",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Mateus\\Desktop\\Projeto-Final-Academia-Atos-UFN\\DreamsMade\\DreamsMade\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\DreamsMade.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Mateus\\Desktop\\Projeto-Final-Academia-Atos-UFN\\DreamsMade\\DreamsMade\\wwwroot\\css\\navbar.css",
+      "SourceId": "DreamsMade",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Mateus\\Desktop\\Projeto-Final-Academia-Atos-UFN\\DreamsMade\\DreamsMade\\wwwroot\\",
+      "BasePath": "_content/DreamsMade",
+      "RelativePath": "css/navbar.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\navbar.css"
     },
     {
       "Identity": "C:\\Users\\Mateus\\Desktop\\Projeto-Final-Academia-Atos-UFN\\DreamsMade\\DreamsMade\\wwwroot\\css\\site.css",

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
+
 namespace DreamsMade.Controllers
 {
     public class HomeController : Controller
@@ -72,40 +73,25 @@ namespace DreamsMade.Controllers
 
         public IActionResult Login()
         {
-            try
-            {
-                //if (user != null)
-                //{
-                //    HttpContext.Session.SetInt32("Id", user.Id);
-                //    HttpContext.Session.SetString("Login", user.Login);
-                //    HttpContext.Session.SetString("Senha", user.Senha);
-                //    return RedirectToAction(nameof(MyPage));
-                //}
-                return View();
-            }
-            catch (Exception ex)
-            {
-                return View();
-            }
+            return View();
         }
 
-        [HttpPost]
-        public IActionResult Login(User user)
-        {
-            try
-            {
-                //XXXXXXXXXXXXXXXXXXXXXXXXX
-
-                return RedirectToAction("MyPage", new { id = user.id });
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Error");
-            }
-        }
+        //[HttpPost]
+        //public IActionResult Login(User user)
+        //{
+        //    var usuario = _auth.Login();
+        //    if (usuario != null)
+        //    {
+        //        HttpContext.Session.SetInt32("id", usuario.id);
+        //        HttpContext.Session.SetString("name", usuario.name);
+        //        HttpContext.Session.SetString("password", usuario.password);
+        //        return RedirectToAction(nameof(MyPage));
+        //    }
+        //    return View("Index");
+        //}
 
         //---------------------------------------------------------------------------------------------------------------------------
-        
+
         [HttpPost]
         public IActionResult Logout()
         {
