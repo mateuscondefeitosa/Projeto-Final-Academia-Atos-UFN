@@ -1,4 +1,5 @@
-﻿using DreamsMade.Models;
+﻿using DreamsMade.Crypto;
+using DreamsMade.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +11,7 @@ using System.Security.Claims;
 
 namespace DreamsMade.Controllers
 {
+
     public class HomeController : Controller
     {
         //private readonly ILogger<HomeController> _logger;
@@ -19,6 +21,11 @@ namespace DreamsMade.Controllers
         //    _logger = logger;
         //}
 
+        private readonly ICrypto _crypto;
+        public HomeController(ICrypto crypto)
+        {
+            _crypto = crypto;
+        }
 
         public IActionResult Index()
         {
@@ -58,8 +65,8 @@ namespace DreamsMade.Controllers
             try
             {
                 Context context = new Context();
-                //Encryption encrypter = new Encryption();
-                //user.password = encrypter.encrypt(user.password);
+
+                user.password = _crypto.Encrypt(user.password);
 
                 context.Users.Add(user);
                 context.SaveChanges();
@@ -86,8 +93,7 @@ namespace DreamsMade.Controllers
             try
             {
                 Context context = new Context();
-                //Encryption encrypter = new Encryption();
-                //user.password = encrypter.decrypt(user.password);
+                user.password = _crypto.Encrypt(user.password);
                 var userLogin = (from User u in context.Users select u).Where(n => n.name == user.name && n.password == user.password).FirstOrDefault();
 
 
