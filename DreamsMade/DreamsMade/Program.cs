@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,31 +8,30 @@ builder.Services.AddControllersWithViews();
 
 
 
-builder.Services.Configure<CookiePolicyOptions>(options => {
-    options.CheckConsentNeeded = context => false;
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => options.LoginPath = "/Usuario/Index");
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
-
-builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
-builder.Services.AddMemoryCache();
-builder.Services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(30));
-
 
 
 var app = builder.Build();
 
-app.UseCookiePolicy();
-app.UseSession();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseCookiePolicy();
+
 
 app.Run();

@@ -40,6 +40,6 @@ namespace DreamsMade
             csp.ImportParameters(privateKey);
             var text = csp.Decrypt(dataBytes, false);
             return Encoding.Unicode.GetString(text);
-            }
+        }
     }
 }

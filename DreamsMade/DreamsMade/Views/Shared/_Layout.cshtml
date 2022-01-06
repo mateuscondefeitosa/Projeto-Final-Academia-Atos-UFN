@@ -27,11 +27,15 @@
                         <a class="nav-link" id="navlink" asp-area="" asp-controller="Home" asp-action="NewPost">New Post!</a>
                     </div>
                     <div class="navbar-nav ml-auto">
-                       @* if(!currentUser) *@
-                           <a href="@Url.Action("Register", "Home")" class="nav-link" id="navlink">Register</a> 
-                           <a href="@Url.Action("Login", "Home")" class="nav-link" id="navlink">Login</a> 
-                       @* else *@
-                           <a href="@Url.Action("Logout", "Home")" class="nav-link" id="navlink">Logout</a> 
+                       @if(!@User.Identity.IsAuthenticated)
+                        {
+                            <a href="@Url.Action("Register", "Home")" class="nav-link" id="navlink">Register</a> 
+                            <a href="@Url.Action("Login", "Home")" class="nav-link" id="navlink">Login</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Logout", "Home")" class="nav-link" id="navlink">Logout</a>    
+                        }
                     </div>
                 </div>
             </div>

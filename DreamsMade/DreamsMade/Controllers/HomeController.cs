@@ -1,8 +1,12 @@
 ﻿using DreamsMade.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-
+using System.Linq;
+using System.Security.Claims;
 
 namespace DreamsMade.Controllers
 {
@@ -33,6 +37,7 @@ namespace DreamsMade.Controllers
 
 
         //---------------------------------------------------------------------------------------------------------------------------
+        [Authorize]
         public IActionResult MyPage(int id)
         {
             Context context = new Context();
@@ -53,9 +58,8 @@ namespace DreamsMade.Controllers
             try
             {
                 Context context = new Context();
-                Encryption encrypter = new Encryption();
-
-                user.password = encrypter.encrypt(user.password);
+                //Encryption encrypter = new Encryption();
+                //user.password = encrypter.encrypt(user.password);
 
                 context.Users.Add(user);
                 context.SaveChanges();
@@ -76,27 +80,56 @@ namespace DreamsMade.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Login(User user)
-        //{
-        //    var usuario = _auth.Login();
-        //    if (usuario != null)
-        //    {
-        //        HttpContext.Session.SetInt32("id", usuario.id);
-        //        HttpContext.Session.SetString("name", usuario.name);
-        //        HttpContext.Session.SetString("password", usuario.password);
-        //        return RedirectToAction(nameof(MyPage));
-        //    }
-        //    return View("Index");
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Login(User user)
+        {
+            try
+            {
+                Context context = new Context();
+                //Encryption encrypter = new Encryption();
+                //user.password = encrypter.decrypt(user.password);
+                var userLogin = (from User u in context.Users select u).Where(n => n.name == user.name && n.password == user.password).FirstOrDefault();
+
+
+                if (userLogin != null)
+                {
+
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, user.name),
+                        new Claim(ClaimTypes.Role, "user"),
+                    };
+
+                    var identidade = new ClaimsIdentity(claims, "Login");
+
+                    ClaimsPrincipal principal = new ClaimsPrincipal(identidade);
+                    var regrasAutenticacao = new AuthenticationProperties
+                    {
+                        AllowRefresh = true,
+                        ExpiresUtc = DateTime.UtcNow.ToLocalTime().AddHours(4),
+                        IsPersistent = true
+                    };
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                        principal, regrasAutenticacao
+                        );
+
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Erro = "Ocorreu um problema ao autenticar: " + ex.Message;
+            }
+            return View();
+        }
 
         //---------------------------------------------------------------------------------------------------------------------------
 
-        [HttpPost]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Clear();
-            return View("Index");
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index");
         }
 
         //---------------------------------------------------------------------------------------------------------------------------

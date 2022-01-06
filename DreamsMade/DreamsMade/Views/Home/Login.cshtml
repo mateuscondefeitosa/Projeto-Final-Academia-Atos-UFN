@@ -1,7 +1,10 @@
-﻿@*
+﻿@model DreamsMade.Models.User
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
+
+
+@using (Html.BeginForm()){
 <div class="container d-flex justify-content-center align-items-center mt-5">
     <div class="row">
         <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
@@ -11,8 +14,8 @@
                     <h5 class="card-title text-center">Login</h5>
                     <form action="/login" class="validated-form" method="POST" novalidate>
                         <div class="mb-3">
-                            <label class="form-label" for="username">Username</label>
-                            <input class="form-control" type="text" name="username" id="username" autofocus required>
+                            <label class="form-label" for="name">Username</label>
+                            <input class="form-control" type="text" name="name" id="name" autofocus required>
                             <div class="valid-feedback">
                                 Cheked!
                             </div>

@@ -1,0 +1,36 @@
+﻿@model AutenticacaoMVCCookies.Models.Usuario
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Tela de Login</h1>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div>Login:</div>
+    <input type="text" name="Login" placeholder="Digite o Login"/>
+    @Html.ValidationMessageFor(m => m.Login)
+
+    <br />
+    <br />
+
+    <div>Senha:</div>
+    <input type="password" name="Senha" placeholder="Digite a Senha"/>
+    @Html.ValidationMessageFor(m => m.Senha)
+
+    <br />
+    <br />
+
+    <button type="submit">Logar</button>
+
+    @if (ViewBag.Erro != null)
+    {
+        <h4>@ViewBag.Erro</h4>
+    }
+}
