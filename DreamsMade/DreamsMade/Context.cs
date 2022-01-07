@@ -10,15 +10,15 @@ namespace DreamsMade
 
         public DbSet<Post> Posts { get; set; }
 
-        public Context()
+        public Context(DbContextOptions<Context>opt) : base(opt)
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=localhost; initial Catalog=DreamsMade; User ID=sa; password=1234; language=Portuguese; Trusted_Connection=True");
-            optionsBuilder.UseLazyLoadingProxies();
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"Data Source=localhost; initial Catalog=DreamsMade; User ID=sa; password=1234; language=Portuguese; Trusted_Connection=True");
+        //    optionsBuilder.UseLazyLoadingProxies();
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

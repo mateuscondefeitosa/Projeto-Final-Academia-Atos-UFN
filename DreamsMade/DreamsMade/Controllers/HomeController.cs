@@ -14,17 +14,17 @@ namespace DreamsMade.Controllers
 
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
+        private readonly Context _dbContext;
 
         private readonly ICrypto _crypto;
-        public HomeController(ICrypto crypto)
+
+        UserResponse _userresponse;
+
+        public HomeController(ICrypto crypto, Context context, UserResponse userresponse)
         {
             _crypto = crypto;
+            _dbContext = context;
+            _userresponse = userresponse;
         }
 
         public IActionResult Index()
@@ -35,23 +35,56 @@ namespace DreamsMade.Controllers
         //---------------------------------------------------------------------------------------------------------------------------
         public IActionResult Dreams()
         {
-            Context context = new Context();
-
-            List<Post> posts = (from Post p in context.Posts select p).Include(e => e.user).ToList<Post>();
+            List<Post> posts = (from Post p in _dbContext.Posts select p).Include(e => e.user).ToList<Post>();
 
             return View(posts);
         }
 
 
         //---------------------------------------------------------------------------------------------------------------------------
-        [Authorize]
-        public IActionResult MyPage(int id)
+        public IActionResult MyPage()
         {
-            Context context = new Context();
-            User? autor = context.Users.Find(id);
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login");
+            }
 
-            return View(autor);
+            List<Post> posts = (from Post p in _dbContext.Posts select p).Include(e => e.user).Where(e => e.user.id == _userresponse.id).ToList<Post>();
+
+            return View(posts);
         }
+
+        //---------------------------------------------------------------------------------------------------------------------------
+        public IActionResult NewPost()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> NewPost(Post post)
+        {
+            try
+            {
+                var pesquisaUser = (from User u in _dbContext.Users select u).Where(u => u.id == _userresponse.id).FirstOrDefault<User>();
+                post.user = pesquisaUser;
+                
+                await _dbContext.Posts.AddAsync(post);
+                await _dbContext.SaveChangesAsync(); 
+
+                return RedirectToAction("MyPage");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
 
         //---------------------------------------------------------------------------------------------------------------------------
         public IActionResult Register()
@@ -64,15 +97,14 @@ namespace DreamsMade.Controllers
         {
             try
             {
-                Context context = new Context();
 
                 user.password = _crypto.Encrypt(user.password);
 
-                context.Users.Add(user);
-                context.SaveChanges();
+                _dbContext.Users.Add(user);
+                _dbContext.SaveChanges();
 
 
-                return RedirectToAction("MyPage", new {id = user.id});
+                return RedirectToAction("MyPage");
             }
             catch (Exception ex)
             {
@@ -92,13 +124,13 @@ namespace DreamsMade.Controllers
         {
             try
             {
-                Context context = new Context();
                 user.password = _crypto.Encrypt(user.password);
-                var userLogin = (from User u in context.Users select u).Where(n => n.name == user.name && n.password == user.password).FirstOrDefault();
-
+                var userLogin = (from User u in _dbContext.Users select u).Where(n => n.name == user.name && n.password == user.password).FirstOrDefault();
 
                 if (userLogin != null)
                 {
+                    _userresponse.id = userLogin.id;
+                    //_userresponse.name = userLogin.name;
 
                     var claims = new List<Claim>
                     {
@@ -120,7 +152,7 @@ namespace DreamsMade.Controllers
                         principal, regrasAutenticacao
                         );
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("MyPage");
                 }
             }
             catch (Exception ex)
@@ -134,8 +166,11 @@ namespace DreamsMade.Controllers
 
         public async Task<IActionResult> Logout()
         {
+            _userresponse.id = null;
+            //_userresponse.name = String.Empty;
+
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Index");
+            return View("Index");
         }
 
         //---------------------------------------------------------------------------------------------------------------------------

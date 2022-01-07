@@ -9,14 +9,14 @@ namespace DreamsMade.Models
 
 
         [StringLength(20)]
-        public string title { get; set; }
+        public string? title { get; set; }
 
 
         [Required]
-        public string image { get; set; }
+        public string? image { get; set; }
 
 
-        public string text { get; set; }
+        public string? text { get; set; }
 
 
         public virtual User user { get; set; }

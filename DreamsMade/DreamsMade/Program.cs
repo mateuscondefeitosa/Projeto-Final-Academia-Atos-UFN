@@ -1,13 +1,23 @@
+using DreamsMade;
 using DreamsMade.Crypto;
+using DreamsMade.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var ConnectionStrings=builder.Configuration.GetConnectionString("Connection");
+builder.Services.AddDbContext<Context>(opts =>
+{
+    opts.UseLazyLoadingProxies().UseSqlServer(ConnectionStrings);
+});
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICrypto, Crypto>();
-
+builder.Services.AddSingleton<UserResponse>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options => options.LoginPath = "/Usuario/Index");
