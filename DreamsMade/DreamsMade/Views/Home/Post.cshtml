@@ -1,12 +1,10 @@
-﻿@using DreamsMade.Models
-@model Post
+﻿@model DreamsMade.Models.Post
 @*
 *@
 @{
 }
 
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm()){
 <div class="container">
         <h1 class="d-flex justify-content-center my-5">Your Dream</h1>
             <div class="card mb-3">
@@ -23,13 +21,18 @@
                                 @Model.text
                             </p>
                             <div>
-                                <button class="btn btn-sm btn-info" value="EditPost">Edit</button>
-                                <button class="btn btn-sm btn-danger" value="DeletePost">Delete</button>
+                                <form asp-action="EditPost">
+                                    <a asp-area="" asp-controller="Home" asp-action="EditPost" asp-route-id="@Model?.id" class="btn btn-sm btn-info">Edit</a>
+                                </form>
+                                <form asp-action="DeletePost">
+                                    <a asp-area="" asp-controller="Home" asp-action="DeletePost" asp-route-id="@Model?.id" class="btn btn-sm btn-danger">Delete</a>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-</div>  
+</div>
 }
+
 

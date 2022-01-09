@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jCX0j0vOX6jkEItjtBhBaHW5ARRK7lF/Z5F96RYUvWo=",
+  "Hash": "yS5DSB5sf6bYlCgzKee91+FQXXgXBKEOWz/7joGfGus=",
   "Source": "DreamsMade",
   "BasePath": "_content/DreamsMade",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Mateus\\Desktop\\Projeto-Final-Academia-Atos-UFN\\DreamsMade\\DreamsMade\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\DreamsMade.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Mateus\\Desktop\\Projeto-Final-Academia-Atos-UFN\\DreamsMade\\DreamsMade\\Views\\Home\\NewPost.cshtml.js",
+      "SourceId": "DreamsMade",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Mateus\\Desktop\\Projeto-Final-Academia-Atos-UFN\\DreamsMade\\DreamsMade\\",
+      "BasePath": "_content/DreamsMade",
+      "RelativePath": "Views/Home/NewPost.cshtml.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "Views\\Home\\NewPost.cshtml.js"
     },
     {
       "Identity": "C:\\Users\\Mateus\\Desktop\\Projeto-Final-Academia-Atos-UFN\\DreamsMade\\DreamsMade\\wwwroot\\css\\navbar.css",

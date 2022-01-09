@@ -66,19 +66,12 @@ namespace DreamsMade.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> NewPost(Post post, IFormFile image1)
+        public async Task<IActionResult> NewPost(Post post)
         {
             try
             {
-
-                //byte[] fileByte = new byte[file.Length];
-                //file.InputStream.Read(fileByte, 0, file.Length);
-                //string Base64String = Convert.ToBase64String(fileByte);
-
-
                 var pesquisaUser = (from User u in _dbContext.Users select u).Where(u => u.id == _userresponse.id).FirstOrDefault<User>();
                 post.user = pesquisaUser;
-                //post.image = Base64String;
                 
                 await _dbContext.Posts.AddAsync(post);
                 await _dbContext.SaveChangesAsync(); 
@@ -92,8 +85,8 @@ namespace DreamsMade.Controllers
         }
 
         //---------------------------------------------------------------------------------------------------------------------------
-        
-        public IActionResult Post(int id)
+        [HttpGet]
+        public async Task<IActionResult> Post(int id)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -101,15 +94,66 @@ namespace DreamsMade.Controllers
             }
 
             Post? post = (from Post p in _dbContext.Posts select p).Where(p => p.id == id).Include(e => e.user).FirstOrDefault<Post>();
-            
+
             return View(post);
         }
-        
-        
-        
-        
-        
-        
+        //---------------------------------------------------------------------------------------------------------------------------
+        [HttpGet]
+        public IActionResult EditPost(int id)
+        {
+            Post? pesquisaPost = (from Post p in _dbContext.Posts select p).Where(p => p.id == id).Include(e => e.user).FirstOrDefault<Post>();
+
+            return View(pesquisaPost);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditPost(Post post)
+        {
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                _dbContext.Posts.Update(post);
+                await _dbContext.SaveChangesAsync();
+
+                return RedirectToAction("MyPage");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //---------------------------------------------------------------------------------------------------------------------------
+        [HttpGet]
+        public async Task<IActionResult> DeletePost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var post = await _dbContext.Posts.AsNoTracking().FirstOrDefaultAsync(p => p.id == id);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                _dbContext.Posts.Remove(post);
+                await _dbContext.SaveChangesAsync();
+                return RedirectToAction("MyPage");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         //---------------------------------------------------------------------------------------------------------------------------
         public IActionResult Register()
         {
@@ -154,7 +198,6 @@ namespace DreamsMade.Controllers
                 if (userLogin != null)
                 {
                     _userresponse.id = userLogin.id;
-                    //_userresponse.name = userLogin.name;
 
                     var claims = new List<Claim>
                     {
@@ -191,7 +234,6 @@ namespace DreamsMade.Controllers
         public async Task<IActionResult> Logout()
         {
             _userresponse.id = null;
-            //_userresponse.name = String.Empty;
 
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index");

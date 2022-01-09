@@ -1,0 +1,41 @@
+﻿@using DreamsMade.Models
+@model Post
+@*
+*@
+@{
+}
+
+@using (Html.BeginForm("EditPost", "Home", FormMethod.Post))
+{
+<div class="container-fluid d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <h1 class="text-center mb-3">Edit Dream</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/EditPost" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Edit Dream Title</label>
+                    <input class="form-control" type="text" name="title" id="title" maxlength="20" value="@Model.title" required>
+                    <div class="valid-feedback">
+                        Cheked!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label" >Choose a new Image</label>
+                    <input class="form-control" type="file" id="image" name="image" value="@Model.image">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="text">Edit your experience!</label>
+                    <textarea class="form-control" type="text" name="text" id="text"
+                        required>@Model.text</textarea>
+                    <div class="valid-feedback">
+                        Cheked!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success" value="EditPost">Edit Dream!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+}
