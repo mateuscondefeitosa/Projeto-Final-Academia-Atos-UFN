@@ -20,5 +20,6 @@ namespace DreamsMade.Models
 
 
         public virtual User user { get; set; }
-        }
+
+    }
 }

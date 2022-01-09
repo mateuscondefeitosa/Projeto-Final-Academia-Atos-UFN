@@ -66,12 +66,19 @@ namespace DreamsMade.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> NewPost(Post post)
+        public async Task<IActionResult> NewPost(Post post, IFormFile image1)
         {
             try
             {
+
+                //byte[] fileByte = new byte[file.Length];
+                //file.InputStream.Read(fileByte, 0, file.Length);
+                //string Base64String = Convert.ToBase64String(fileByte);
+
+
                 var pesquisaUser = (from User u in _dbContext.Users select u).Where(u => u.id == _userresponse.id).FirstOrDefault<User>();
                 post.user = pesquisaUser;
+                //post.image = Base64String;
                 
                 await _dbContext.Posts.AddAsync(post);
                 await _dbContext.SaveChangesAsync(); 
@@ -84,8 +91,25 @@ namespace DreamsMade.Controllers
             }
         }
 
+        //---------------------------------------------------------------------------------------------------------------------------
+        
+        public IActionResult Post(int id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login");
+            }
 
-
+            Post? post = (from Post p in _dbContext.Posts select p).Where(p => p.id == id).Include(e => e.user).FirstOrDefault<Post>();
+            
+            return View(post);
+        }
+        
+        
+        
+        
+        
+        
         //---------------------------------------------------------------------------------------------------------------------------
         public IActionResult Register()
         {
@@ -170,7 +194,7 @@ namespace DreamsMade.Controllers
             //_userresponse.name = String.Empty;
 
             await HttpContext.SignOutAsync();
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         //---------------------------------------------------------------------------------------------------------------------------

@@ -9,7 +9,7 @@
     <div class="row">
         <h1 class="text-center mb-3">New Dream</h1>
         <div class="col-md-6 offset-md-3">
-            <form action="/NewPost" method="POST" novalidate class="validated-form">
+            <form action="/NewPost" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="title">Dream Title</label>
                     <input class="form-control" type="text" name="title" id="title" maxlength="20" required>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label" >Choose a Image</label>
-                    <input class="form-control" type="text" id="image" name="image" single required>
+                    <input class="form-control" type="file" id="image" name="image" single required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="text">Compartilhe your experience!</label>
@@ -37,3 +37,4 @@
     </div>
 </div>
 }
+

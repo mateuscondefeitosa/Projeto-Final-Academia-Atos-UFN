@@ -5,6 +5,7 @@
 @{
 }
 
+
 <div class="container">
         <h1 class="d-flex justify-content-center my-5">My Dreams</h1>
         <div><a class="nav-link" id="navlink" asp-area="" asp-controller="Home" asp-action="NewPost">Click Here to make a new Post!</a></div>
@@ -17,9 +18,9 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body" style="border: none;">
-                            <h5 class="card title">
+                            <a href="@Url.Action("Post","Home", new { id = @post.id })"><h5 class="card title">
                                 @post.title
-                            </h5>
+                            </h5></a>
                             <p class="card-text">
                                 @post.text
                             </p>
