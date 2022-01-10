@@ -241,6 +241,37 @@ namespace DreamsMade.Controllers
 
         //---------------------------------------------------------------------------------------------------------------------------
 
+        public IActionResult DeleteUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var pesquisaUser = (from User u in _dbContext.Users select u).Where(u => u.id == _userresponse.id).Include(p => p.posts).AsNoTracking().FirstOrDefault();
+
+            if (pesquisaUser == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                _dbContext.Users.Remove(pesquisaUser);
+                await _dbContext.SaveChangesAsync();
+
+                _userresponse.id = null;
+                await HttpContext.SignOutAsync();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        //---------------------------------------------------------------------------------------------------------------------------
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

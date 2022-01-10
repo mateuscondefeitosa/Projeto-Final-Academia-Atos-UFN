@@ -30,11 +30,31 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-success" value="NewPost">Add Dream!</button>
+                    <button class="btn btn-success" id="btn-convert" value="NewPost">Add Dream!</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 }
+
+<script type="text/javascript">
+    const toBase64 = file => new Promise((resolve, reject) => {
+	const reader = new FileReader();
+	reader.readAsDataURL(file);
+	reader.onload = () => resolve(reader.result);
+	reader.onerror = error => reject(error);
+    });
+
+    $('#btn-convert').click(function () {
+	const uploadedFile = document.querySelector('#image').files[0];
+	toBase64(uploadedFile)
+		.then(res => {
+			console.log(res);
+		})
+		.catch(err => {
+			console.log(err);
+		})
+    });
+</script>
 

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/navbar.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CssIsolationMvc.styles.css" />
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 <body class="d-flex flex-column vh-100">
     <header>
@@ -34,6 +35,7 @@
                         }
                         else
                         {
+                            <a href="@Url.Action("DeleteUser", "Home")" class="nav-link" id="navlink">Delete Acc</a>    
                             <a href="@Url.Action("Logout", "Home")" class="nav-link" id="navlink">Logout</a>    
                         }
                     </div>
@@ -41,11 +43,11 @@
             </div>
         </nav>
     </header>
-    <div >
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    
+    <main role="main" class="">
+        @RenderBody()
+    </main>
+
 
     <footer class="footer bg-dark mt-auto text-center py-0">
         <div class="container text-muted">
