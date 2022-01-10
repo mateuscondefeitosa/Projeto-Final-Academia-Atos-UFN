@@ -70,6 +70,16 @@ namespace DreamsMade.Controllers
         {
             try
             {
+                if (file.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        file.CopyTo(ms);
+                        var fileBytes = ms.ToArray();
+                        string s = Convert.ToBase64String(fileBytes);
+                        post.image = s;
+                    }
+                }
                 var pesquisaUser = (from User u in _dbContext.Users select u).Where(u => u.id == _userresponse.id).FirstOrDefault<User>();
                 post.user = pesquisaUser;
                 
@@ -77,6 +87,7 @@ namespace DreamsMade.Controllers
                 await _dbContext.SaveChangesAsync(); 
 
                 return RedirectToAction("MyPage");
+
             }
             catch (Exception ex)
             {
@@ -107,7 +118,7 @@ namespace DreamsMade.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditPost(Post post)
+        public async Task<IActionResult> EditPost(Post post, IFormFile file)
         {
             if (post == null)
             {
@@ -116,6 +127,16 @@ namespace DreamsMade.Controllers
 
             try
             {
+                if (file.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        file.CopyTo(ms);
+                        var fileBytes = ms.ToArray();
+                        string s = Convert.ToBase64String(fileBytes);
+                        post.image = s;
+                    }
+                }
                 _dbContext.Posts.Update(post);
                 await _dbContext.SaveChangesAsync();
 
