@@ -66,7 +66,7 @@ namespace DreamsMade.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> NewPost(Post post)
+        public async Task<IActionResult> NewPost(Post post, IFormFile file)
         {
             try
             {

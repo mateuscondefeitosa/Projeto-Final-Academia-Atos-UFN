@@ -1,1 +1,41 @@
+body{
+    font-family: 'Segoe UI', 'Roboto';
+}
 
+
+
+.card-show {
+    position: relative;
+    margin: 50px auto 0;
+    background: linear-gradient(0deg,#fff)
+}
+
+.card-show:before,
+.card-show:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background: linear-gradient(45deg,#fb0094,#ff4af0,#5bffe4,#0000ff,#c000fb,#e064ff);
+    background-size: 250%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: animate 20s linear infinite;
+}
+
+.card-show:after {
+    filter: blur(8px);
+}
+
+@keyframes animate{
+    0%{
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 300% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}

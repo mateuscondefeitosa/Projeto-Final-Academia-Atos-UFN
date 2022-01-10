@@ -2,19 +2,21 @@
 @*
 *@
 @{
+    ViewData["Title"] = "My Post";
 }
+
 
 @using (Html.BeginForm()){
 <div class="container">
         <h1 class="d-flex justify-content-center my-5">Your Dream</h1>
-            <div class="card mb-3">
+            <div class="card mb-3 card-show">
                 <div class="row">
                     <div class="col-md-4">
                         @*<img src="@Model.image" class="img-fluid">*@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body" style="border: none;">
-                            <h5 class="card title">
+                            <h5 class="card-title">
                                 @Model.title
                             </h5>
                             <p class="card-text">

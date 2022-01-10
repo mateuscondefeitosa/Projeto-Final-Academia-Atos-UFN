@@ -3,7 +3,7 @@
 @*
 *@
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("NewPost", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 <div class="container-fluid d-flex justify-content-center align-items-center mt-5">
     <div class="row">
@@ -22,7 +22,7 @@
                     <input class="form-control" type="file" id="image" name="image">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="text">Compartilhe your experience!</label>
+                    <label class="form-label" for="text">Share your experience!</label>
                     <textarea class="form-control" type="text" name="text" id="text"
                         required></textarea>
                     <div class="valid-feedback">

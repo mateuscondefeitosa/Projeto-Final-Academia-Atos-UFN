@@ -1,6 +1,6 @@
 /* _content/DreamsMade/Views/Home/Index.cshtml.rz.scp.css */
 main[b-4fk6xjk7s2] {
-    height: 90vh;
+    height: 100vh;
     background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4)), url("https://images.unsplash.com/photo-1525876183281-0d0d9308010d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
     background-size: cover;
     background-position: center;
@@ -8,14 +8,15 @@ main[b-4fk6xjk7s2] {
     box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.35);
 }
 
-#index[b-4fk6xjk7s2] {
-    font-family: 'Comic Sans MS';
-}
+/*#index {
+    font-family: 'Segoe UI', 'Roboto';
+}*/
 
 
 p[b-4fk6xjk7s2] {
     color: black;
-    font-size: 30px;
+    font-size: 32px;
+    font-weight:400;
 }
 
 .display-4[b-4fk6xjk7s2] {
@@ -24,11 +25,9 @@ p[b-4fk6xjk7s2] {
 }
 
 .span[b-4fk6xjk7s2] {
-    color: red;
-    font-weight: 700;
+    color: rgb(255, 74, 240);
+    font-weight: 600;
 }
-
-
 /* _content/DreamsMade/Views/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */

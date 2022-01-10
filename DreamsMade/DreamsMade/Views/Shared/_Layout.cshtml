@@ -12,20 +12,23 @@
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 <body class="d-flex flex-column vh-100">
-    <header>
-        <nav class="navbar navbar-expand-md navbar-toggleable-md sticky-top navbar-dark bg-dark">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark bg-gradient">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DreamsMade</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><span id="nav-span1">Dreams</span><span id="nav-span2">Made</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse justify-content-end">
                     <div class="navbar-nav flex-grow-1">
-                        <a class="nav-link" id="navlink" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        <a class="nav-link" id="navlink" asp-area="" asp-controller="Home" asp-action="Dreams">Dreams</a>
-                        <a class="nav-link" id="navlink" asp-area="" asp-controller="Home" asp-action="MyPage">My Page</a>
-                        <a class="nav-link" id="navlink" asp-area="" asp-controller="Home" asp-action="NewPost">New Post!</a>
+                            <a class="nav-link " id="navlink" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" id="navlink" asp-area="" asp-controller="Home" asp-action="Dreams">Dreams</a>
+                        @if(@User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link" id="navlink" asp-area="" asp-controller="Home" asp-action="MyPage">My Page</a>
+                            <a class="nav-link" id="navlink" asp-area="" asp-controller="Home" asp-action="NewPost">New Post!</a>
+                        }
                     </div>
                     <div class="navbar-nav ml-auto">
                        @if(!@User.Identity.IsAuthenticated)
@@ -49,7 +52,7 @@
     </main>
 
 
-    <footer class="footer bg-dark mt-auto text-center py-0">
+    <footer class="footer bg-dark mt-auto text-center py-0" id="footer">
         <div class="container text-muted">
             Academia .NET ATOS/UFN &copy; 2022 - DreamsMade - Aluno: <a href="https://github.com/mateuscondefeitosa"> Mateus Conde Feitosa.
         </div>
