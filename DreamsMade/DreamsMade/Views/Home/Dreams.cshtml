@@ -12,8 +12,8 @@
         {
             <div class="card mb-3 card-show">
                 <div class="row">
-                    <div class="col-md-4">
-                        <img src="@post.image" class="img-fluid">
+                    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                        <img src="data:image/png;base64,@post.image" class="img-fluid" >
                     </div>
                     <div class="col-md-8">
                         <div class="card-body" style="border: none;">
@@ -25,7 +25,7 @@
                             </p>
                             <p class="card-text">
                                 <small class="text-muted">
-                                    @post.user.name
+                                    By: @post.user.name
                                 </small>
                             </p>
                         </div>

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
+using System.Drawing;
 
 namespace DreamsMade.Controllers
 {
@@ -36,6 +37,7 @@ namespace DreamsMade.Controllers
         public IActionResult Dreams()
         {
             List<Post> posts = (from Post p in _dbContext.Posts select p).Include(e => e.user).ToList<Post>();
+
 
             return View(posts);
         }
@@ -108,6 +110,8 @@ namespace DreamsMade.Controllers
 
             return View(post);
         }
+
+      
         //---------------------------------------------------------------------------------------------------------------------------
         [HttpGet]
         public IActionResult EditPost(int id)
