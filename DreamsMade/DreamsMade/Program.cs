@@ -20,7 +20,7 @@ builder.Services.AddScoped<ICrypto, Crypto>();
 builder.Services.AddSingleton<UserResponse>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options => options.LoginPath = "/Usuario/Index");
+    .AddCookie(options => options.LoginPath = "/Home/Login");
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true;

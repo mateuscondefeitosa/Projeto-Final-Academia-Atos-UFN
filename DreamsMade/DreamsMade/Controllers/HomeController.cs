@@ -19,13 +19,13 @@ namespace DreamsMade.Controllers
 
         private readonly ICrypto _crypto;
 
-        UserResponse _userresponse;
+        //UserResponse _userresponse;
 
         public HomeController(ICrypto crypto, Context context, UserResponse userresponse)
         {
             _crypto = crypto;
             _dbContext = context;
-            _userresponse = userresponse;
+            //_userresponse = userresponse;
         }
 
         public IActionResult Index()
@@ -51,7 +51,11 @@ namespace DreamsMade.Controllers
                 return RedirectToAction("Login");
             }
 
-            List<Post> posts = (from Post p in _dbContext.Posts select p).Include(e => e.user).Where(e => e.user.id == _userresponse.id).ToList<Post>();
+            var idUser = HttpContext.User.FindFirst(ClaimTypes.Sid)?.Value;
+
+
+            //List<Post> posts = (from Post p in _dbContext.Posts select p).Include(e => e.user).Where(e => e.user.id == _userresponse.id).ToList<Post>();
+            List<Post> posts  = (from Post p in _dbContext.Posts select p).Include(e => e.user).Where(e => e.user.id == int.Parse(idUser.ToString())).ToList<Post>();
 
             return View(posts);
         }
@@ -82,7 +86,8 @@ namespace DreamsMade.Controllers
                         post.image = s;
                     }
                 }
-                var pesquisaUser = (from User u in _dbContext.Users select u).Where(u => u.id == _userresponse.id).FirstOrDefault<User>();
+                var idUser = HttpContext.User.FindFirst(ClaimTypes.Sid)?.Value;
+                var pesquisaUser = (from User u in _dbContext.Users select u).Where(u => u.id == int.Parse(idUser.ToString())).FirstOrDefault<User>();
                 post.user = pesquisaUser;
                 
                 await _dbContext.Posts.AddAsync(post);
@@ -222,12 +227,13 @@ namespace DreamsMade.Controllers
 
                 if (userLogin != null)
                 {
-                    _userresponse.id = userLogin.id;
+                    //_userresponse.id = userLogin.id;
 
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.name),
                         new Claim(ClaimTypes.Role, "user"),
+                        new Claim(ClaimTypes.Sid, userLogin.id.ToString() )
                     };
 
                     var identidade = new ClaimsIdentity(claims, "Login");
@@ -240,6 +246,7 @@ namespace DreamsMade.Controllers
                         IsPersistent = true
                     };
 
+                    HttpContext.Items.Add("userid", userLogin.id);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                         principal, regrasAutenticacao
                         );
@@ -258,7 +265,7 @@ namespace DreamsMade.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            _userresponse.id = null;
+            //_userresponse.id = null;
 
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index");
@@ -274,7 +281,8 @@ namespace DreamsMade.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var pesquisaUser = (from User u in _dbContext.Users select u).Where(u => u.id == _userresponse.id).Include(p => p.posts).AsNoTracking().FirstOrDefault();
+            var idUser = HttpContext.User.FindFirst(ClaimTypes.Sid)?.Value;
+            var pesquisaUser = (from User u in _dbContext.Users select u).Where(u => u.id == int.Parse(idUser.ToString())).Include(p => p.posts).AsNoTracking().FirstOrDefault();
 
             if (pesquisaUser == null)
             {
@@ -286,7 +294,7 @@ namespace DreamsMade.Controllers
                 _dbContext.Users.Remove(pesquisaUser);
                 await _dbContext.SaveChangesAsync();
 
-                _userresponse.id = null;
+                //_userresponse.id = null;
                 await HttpContext.SignOutAsync();
                 return RedirectToAction("Index");
             }

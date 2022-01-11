@@ -9,24 +9,26 @@
 @using (Html.BeginForm()){
 <div class="container">
         <h1 class="d-flex justify-content-center my-5">Your Dream</h1>
-            <div class="card mb-3 card-show">
-                <div class="row">
-                    <img src="data:image/png;base64,@Model.image" class="img-fluid card-img-top">
-                    <div class="col-md-8">
-                        <div class="card-body" style="border: none;">
-                            <h5 class="card-title">
-                                @Model.title
-                            </h5>
-                            <p class="card-text">
-                                @Model.text
-                            </p>
-                            <div>
-                                <form asp-action="EditPost">
-                                    <a asp-area="" asp-controller="Home" asp-action="EditPost" asp-route-id="@Model?.id" class="btn btn-sm btn-info">Edit</a>
-                                </form>
-                                <form asp-action="DeletePost">
-                                    <a asp-area="" asp-controller="Home" asp-action="DeletePost" asp-route-id="@Model?.id" class="btn btn-sm btn-danger">Delete</a>
-                                </form>
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                <div class="card mb-3 card-show">
+                    <div class="row">
+                        <img src="data:image/png;base64,@Model.image" class="img-fluid card-img-top">
+                        <div class="col-md-8">
+                            <div class="card-body" style="border: none;">
+                                <h5 class="card-title">
+                                    @Model.title
+                                </h5>
+                                <p class="card-text">
+                                    @Model.text
+                                </p>
+                                <div class="d-inline">
+                                    <form asp-action="EditPost" class="d-inline">
+                                        <a asp-area="" asp-controller="Home" asp-action="EditPost" asp-route-id="@Model?.id" class="btn btn-sm btn-info ">Edit &#128269;</a>
+                                    </form>
+                                    <form asp-action="DeletePost" class="d-inline">
+                                        <a asp-area="" asp-controller="Home" asp-action="DeletePost" asp-route-id="@Model?.id" class="btn btn-sm btn-danger">Delete</a>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

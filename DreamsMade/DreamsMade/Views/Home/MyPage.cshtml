@@ -4,31 +4,35 @@
 @{
     ViewData["Title"] = "My Page";
 }
-
+<style>
+    #linkPost{
+        text-decoration: none;
+        color: black;
+     }
+</style>
 
 <div class="container mb-5">
         <h1 class="d-flex justify-content-center my-5">My Dreams</h1>
         @foreach (var post in @Model)
         {
-            <div class="card mb-3 card-show">
-                <div class="row">
-                    <img src="data:image/png;base64,@post.image" class="img-fluid card-img-top">
-                    <div class="col-md-8">
-                        <div class="card-body" style="border: none;">
-                            <a href="@Url.Action("Post","Home", new { id = @post.id })"><h5 class="card-title">
-                                @post.title
-                            </h5></a>
-                            <p class="card-text">
-                                @post.text
-                            </p>
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    @post.user.name
-                                </small>
-                            </p>
+            <a href="@Url.Action("Post","Home", new { id = @post.id })" id="linkPost">
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                <div class="card mb-3 card-show">
+                    <div class="row">
+                        <img src="data:image/png;base64,@post.image" class="img-fluid card-img-top">
+                        <div class="col-md-8">
+                            <div class="card-body" style="border: none;">
+                                <h5 class="card-title">
+                                    @post.title
+                                </h5>
+                                <p class="card-text">
+                                    @post.text
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </a>
         }
 </div>
