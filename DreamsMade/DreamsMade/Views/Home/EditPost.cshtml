@@ -6,9 +6,36 @@
     ViewData["Title"] = "Edit Post";
 }
 
+
+<style>
+    .image-preview {
+        width: 290px;
+        min-height: 100px;
+        border: 2px solid #dddddd;
+        margin-top: 15px;
+
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #cccccc;
+    }
+
+    .image-preview__image {
+        display: none;
+        width: 100%;
+    }
+
+    textarea {
+        width: 300px;
+        height: 80px;
+    }
+</style>
+
+
 @using (Html.BeginForm("EditPost", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-<div class="container-fluid d-flex justify-content-center align-items-center mt-5">
+<div class="container-fluid d-flex justify-content-center align-items-center mt-5 mb-5">
     <div class="row">
         <h1 class="text-center mb-3">Edit Dream</h1>
         <div class="col-md-6 offset-md-3">
@@ -23,10 +50,14 @@
                 <div class="mb-3">
                     <label for="file" class="form-label" >Choose a new Image</label>
                     <input class="form-control" type="file" id="file" name="file" value="@Model.image">
+                    <div class="image-preview" id="imagePreview">
+                        <img src="" alt="Image Preview" class="image-preview__image">
+                        <span class="image-preview__default-text">Image Preview</span>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="text">Edit your experience!</label>
-                    <textarea class="form-control" type="text" name="text" id="text"
+                    <textarea class="form-control" type="text" name="text" id="text" wi
                         required>@Model.text</textarea>
                     <div class="valid-feedback">
                         Cheked!
@@ -39,4 +70,37 @@
         </div>
     </div>
 </div>
+}
+
+
+@section Scripts
+{
+<script>
+    const file = document.getElementById("file");
+    const previewContainer = document.getElementById("imagePreview");
+    const previewImage = previewContainer.querySelector(".image-preview__image");
+    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+
+    file.addEventListener("change", function() {
+        const thisFile = this.files[0];
+
+        if (thisFile) {
+            const reader = new FileReader();
+
+            previewDefaultText.style.display = "none";
+            previewImage.style.display = "block";
+
+            reader.addEventListener("load", function() {
+                previewImage.setAttribute("src", this.result);
+            });
+
+            reader.readAsDataURL(thisFile);
+        } else 
+        {
+            previewDefaultText.style.display = null;
+            previewImage.style.display = null;
+            previewImage.setAttribute("src", "");
+        }
+    });
+</script>
 }
